@@ -20,7 +20,6 @@ function transformStateWithClones(state, actions) {
         for (const key in extraData) {
           copyOfState[key] = extraData[key];
         }
-        historyOfStates.push(Object.assign({}, copyOfState));
         break;
 
       case 'removeProperties':
@@ -31,16 +30,16 @@ function transformStateWithClones(state, actions) {
             delete copyOfState[key];
           }
         }
-        historyOfStates.push(Object.assign({}, copyOfState));
         break;
 
       case 'clear':
         for (const key in copyOfState) {
           delete copyOfState[key];
         }
-        historyOfStates.push(Object.assign({}, copyOfState));
         break;
     }
+
+    historyOfStates.push(Object.assign({}, copyOfState));
   }
 
   return historyOfStates;
